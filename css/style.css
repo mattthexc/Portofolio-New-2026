@@ -1,0 +1,91 @@
+/* ========================================================
+   1. KURSOR LINUX UBUNTU & SMART CROP
+   ======================================================== */
+/* Menyembunyikan kursor awal yang ditaruh di off-screen agar tidak stuck */
+#custom-cursor, #cursor-dot {
+    top: -50px;
+    left: -50px;
+}
+
+body, a, button, .interactive-card, .magnetic-btn {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='black' stroke='white' stroke-width='1.5' d='M5.5 3.5L18.5 12L11.5 13.5L14.5 20.5L11 22L7.5 14L2.5 17.5Z'/%3E%3C/svg%3E"), auto;
+}
+
+/* Memotong foto agar selalu rapi di semua resolusi */
+.smart-crop {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    aspect-ratio: 16/9;
+}
+
+/* Mencegah spasi membuat teks animasi patah & merusak tinggi kontainer */
+.typing-text {
+    white-space: pre; 
+}
+
+
+/* ========================================================
+   2. CUSTOM SCROLLBAR & NAVBAR
+   ======================================================== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+.dark ::-webkit-scrollbar-thumb { background: #3f3f46; } 
+::-webkit-scrollbar-thumb:hover { background: #e11d48; }
+
+body { overflow-x: hidden; width: 100%; }
+
+.glass-nav {
+    background: rgba(250, 250, 250, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.dark .glass-nav {
+    background: rgba(9, 9, 11, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-link { color: #475569; }
+.dark .nav-link { color: #94a3b8; }
+.nav-link:hover { color: #e11d48; }
+.nav-link.active { color: #e11d48; font-weight: 700; }
+
+
+/* ========================================================
+   3. CARD & BUTTON STYLING
+   ======================================================== */
+.soft-card {
+    background: #ffffff;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.dark .soft-card {
+    background: rgba(24, 24, 27, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: none;
+}
+.soft-card:hover { transform: translateY(-4px); border-color: rgba(225, 29, 72, 0.4); }
+
+.btn-primary { background: #e11d48; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.btn-primary:hover { background: #be123c; transform: translateY(-2px); }
+
+.perspective-1000 { perspective: 1000px; }
+.preserve-3d { transform-style: preserve-3d; }
+
+.cursor-blink { animation: blink 1s step-end infinite; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: opacity, transform;
+}
+.reveal.active { opacity: 1; transform: translateY(0); }
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }

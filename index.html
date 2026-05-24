@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth scroll-pt-20">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#09090b"> 
+    <meta name="description" content="Portofolio Profesional Rahmat Karunia Suharso - Field & Instrumentation Engineer">
+    <title>RahmatKS | Engineer Portfolio</title>
+    
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Devicon CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Inter"', 'sans-serif'] },
+                    colors: {
+                        darkBg: '#09090b',   
+                        lightBg: '#fafafa',  
+                        primary: '#e11d48',  
+                    }
+                }
+            }
+        }
+    </script>
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body class="bg-lightBg dark:bg-darkBg text-slate-800 dark:text-slate-300 overflow-x-hidden relative transition-colors duration-500 selection:bg-primary/30 selection:text-primary">
+
+    <!-- PRELOADER -->
+    <div id="preloader" class="fixed inset-0 z-[999] bg-white dark:bg-darkBg flex items-center justify-center transition-opacity duration-500">
+        <div class="text-center">
+            <span class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Rahmat<span class="text-primary">KS.</span></span>
+            <div class="h-1 w-24 bg-slate-200 dark:bg-zinc-800 rounded-full mt-4 overflow-hidden mx-auto">
+                <div class="h-full bg-primary w-1/2 animate-[loading_1s_ease-in-out_infinite_alternate] rounded-full"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor (Posisi awal di-hide di CSS agar tidak stuck) -->
+    <div id="custom-cursor" class="hidden lg:block fixed w-6 h-6 border-2 border-primary rounded-full pointer-events-none z-[100] transition-transform duration-75 ease-out transform -translate-x-1/2 -translate-y-1/2 mix-blend-difference"></div>
+    <div id="cursor-dot" class="hidden lg:block fixed w-1.5 h-1.5 bg-primary rounded-full pointer-events-none z-[100] transform -translate-x-1/2 -translate-y-1/2"></div>
+
+    <!-- Scroll Progress -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-rose-500 to-red-600 z-[60] w-0 transition-all duration-100 ease-out"></div>
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 glass-nav" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-50 bg-inherit">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0">
+                    <a href="#home" class="flex items-center gap-2">
+                        <span class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Rahmat<span class="text-primary">KS.</span></span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex space-x-5 lg:space-x-8 items-center nav-menu">
+                    <a href="#home" class="nav-link text-sm font-medium transition-colors lang" data-id="Beranda" data-en="Home">Beranda</a>
+                    <a href="#skills" class="nav-link text-sm font-medium transition-colors lang" data-id="Keahlian" data-en="Skills">Keahlian</a>
+                    <a href="#experience" class="nav-link text-sm font-medium transition-colors lang" data-id="Pengalaman" data-en="Experience">Pengalaman</a>
+                    <a href="#education" class="nav-link text-sm font-medium transition-colors lang" data-id="Pendidikan" data-en="Education">Pendidikan</a>
+                    <a href="#projects" class="nav-link text-sm font-medium transition-colors lang" data-id="Proyek" data-en="Projects">Proyek</a>
+                    <a href="#contact" class="nav-link text-sm font-medium transition-colors lang" data-id="Kontak" data-en="Contact">Kontak</a>
+                </div>
+
+                <div class="hidden md:flex items-center gap-4">
+                    <button id="lang-toggle" class="magnetic-btn px-3 py-1.5 rounded-md bg-slate-200 dark:bg-zinc-800 text-xs font-bold text-slate-700 dark:text-slate-300 hover:text-primary transition-colors">
+                        ID/EN
+                    </button>
+                    <button id="theme-toggle" class="magnetic-btn w-9 h-9 rounded-full bg-slate-200 dark:bg-zinc-800 flex items-center justify-center text-slate-700 dark:text-yellow-400 hover:text-primary transition-colors">
+                        <i class="fa-solid fa-moon dark:hidden"></i>
+                        <i class="fa-solid fa-sun hidden dark:block"></i>
+                    </button>
+                    <a href="https://drive.google.com/file/d/YOUR_DRIVE_ID/view?usp=sharing" target="_blank" class="magnetic-btn btn-primary px-5 py-2.5 rounded-full text-sm font-medium text-white shadow-lg shadow-rose-500/30 lang" data-id="Unduh CV" data-en="Download CV">Unduh CV</a>
+                </div>
+
+                <div class="md:hidden flex items-center gap-3">
+                    <button id="lang-toggle-mobile" class="px-2 py-1 rounded-md bg-slate-200 dark:bg-zinc-800 text-xs font-bold text-slate-700 dark:text-slate-300">ID</button>
+                    <button id="theme-toggle-mobile" class="w-8 h-8 flex items-center justify-center text-slate-700 dark:text-yellow-400">
+                        <i class="fa-solid fa-moon dark:hidden"></i>
+                        <i class="fa-solid fa-sun hidden dark:block"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="text-slate-900 dark:text-white p-2">
+                        <i class="fa-solid fa-bars text-xl transition-transform duration-300" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="absolute top-20 left-0 w-full bg-white dark:bg-zinc-950 border-b border-slate-200 dark:border-zinc-800 shadow-xl overflow-hidden transition-all duration-300 max-h-0 opacity-0 z-40">
+            <div class="flex flex-col px-6 py-6 gap-5">
+                <a href="#home" class="mobile-link text-lg font-medium text-slate-800 dark:text-slate-300 hover:text-primary transition-colors lang" data-id="Beranda" data-en="Home">Beranda</a>
+                <a href="#skills" class="mobile-link text-lg font-medium text-slate-800 dark:text-slate-300 hover:text-primary transition-colors lang" data-id="Keahlian" data-en="Skills">Keahlian</a>
+                <a href="#experience" class="mobile-link text-lg font-medium text-slate-800 dark:text-slate-300 hover:text-primary transition-colors lang" data-id="Pengalaman" data-en="Experience">Pengalaman</a>
+                <a href="#education" class="mobile-link text-lg font-medium text-slate-800 dark:text-slate-300 hover:text-primary transition-colors lang" data-id="Pendidikan" data-en="Education">Pendidikan</a>
+                <a href="#projects" class="mobile-link text-lg font-medium text-slate-800 dark:text-slate-300 hover:text-primary transition-colors lang" data-id="Proyek" data-en="Projects">Proyek</a>
+                <a href="#contact" class="mobile-link text-lg font-medium text-slate-800 dark:text-slate-300 hover:text-primary transition-colors lang" data-id="Hubungi Saya" data-en="Contact Me">Hubungi Saya</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION (Bug Spacing & Height Fixed) -->
+    <section id="home" class="pt-28 pb-12 md:pt-32 md:pb-20 px-6 max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center justify-center gap-12 min-h-[90vh]">
+        <div class="flex-1 space-y-6 text-center md:text-left reveal w-full flex flex-col justify-center">
+            
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 text-xs sm:text-sm font-medium w-max mx-auto md:mx-0">
+                <span class="w-2 h-2 rounded-full bg-primary"></span>
+                Industrial Automation & Instrumentation
+            </div>
+            
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.2] lang" data-id="Halo, Saya Rahmat <br>" data-en="Hello, I am Rahmat <br>">
+                Halo, Saya Rahmat <br>
+            </h1>
+            
+            <!-- Kontainer Teks Mengetik (Bug Tinggi Fixed: dikunci min-h agar web tidak meloncat ke bawah) -->
+            <div class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-2 min-h-[48px] sm:min-h-[56px] lg:min-h-[64px] flex items-center justify-center md:justify-start">
+                <span class="text-primary typing-text"></span><span class="cursor-blink text-primary">|</span>
+            </div>
+            
+            <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg max-w-xl mx-auto md:mx-0 leading-relaxed lang" data-id="Teknisi dan Engineer yang terjun langsung di lapangan. Berpengalaman menangani perakitan panel mesin industri tekstil, instalasi sensor presisi, hingga web development." data-en="Hands-on Technician and Engineer. Experienced in textile industrial machine panel assembly, precision sensor installation, and full-stack web development.">
+                Teknisi dan Engineer yang terjun langsung di lapangan. Berpengalaman menangani perakitan panel mesin industri tekstil, instalasi sensor presisi, hingga web development.
+            </p>
+
+            <div class="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
+                <a href="#projects" class="magnetic-btn btn-primary px-6 py-3 rounded-full font-medium text-white shadow-lg shadow-rose-500/30 lang" data-id="Lihat Dokumentasi Kerja" data-en="View Documentation">Lihat Dokumentasi Kerja</a>
+                <a href="#contact" class="magnetic-btn px-6 py-3 rounded-full bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 hover:border-primary text-slate-800 dark:text-slate-300 font-medium transition-all flex items-center gap-2 lang" data-id="<i class='fa-regular fa-handshake'></i> Mari Terhubung" data-en="<i class='fa-regular fa-handshake'></i> Let's Connect">
+                    <i class="fa-regular fa-handshake"></i> Mari Terhubung
+                </a>
+            </div>
+        </div>
+        
+        <div class="flex-1 flex justify-center reveal delay-100 perspective-1000 w-full">
+            <div id="tilt-card" class="relative w-64 h-80 sm:w-80 sm:h-96 md:w-[320px] md:h-[400px] rounded-2xl p-2 bg-white dark:bg-zinc-900 shadow-2xl border border-slate-200 dark:border-zinc-800 transition-transform duration-200 ease-out preserve-3d">
+                <div class="absolute -inset-1 bg-gradient-to-tr from-primary to-rose-400 rounded-2xl blur opacity-30 dark:opacity-20"></div>
+                <div class="relative w-full h-full rounded-xl overflow-hidden bg-red-600 flex flex-col group">
+                    <img src="assets/img/profile.webp" alt="Rahmat KS" class="smart-crop transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 text-left">
+                        <p class="text-white font-bold tracking-wide">Rahmat K. Suharso</p>
+                        <p class="text-rose-200 text-xs">Field Engineer & Developer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PETA KEAHLIAN (SKILL TREE) -->
+    <section id="skills" class="py-24 px-6 max-w-7xl mx-auto border-t border-slate-200 dark:border-zinc-800">
+        <div class="text-center space-y-4 mb-16 reveal">
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight lang" data-id="Peta Keahlian & Ekosistem" data-en="Skill Tree & Ecosystem">Peta Keahlian & Ekosistem</h2>
+            <div class="h-1 w-12 bg-primary mx-auto rounded-full"></div>
+            <p class="text-slate-500 max-w-2xl mx-auto text-sm lang" data-id="Alur kompetensi dari instalasi perangkat keras industri hingga arsitektur perangkat lunak." data-en="Competency flow from industrial hardware installation to software architecture.">Alur kompetensi dari instalasi perangkat keras industri hingga arsitektur perangkat lunak.</p>
+        </div>
+        
+        <div class="relative flex flex-col items-center gap-12 reveal">
+            <div class="absolute top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-zinc-800 hidden md:block"></div>
+
+            <div class="z-10 bg-white dark:bg-zinc-900 border-2 border-primary text-slate-900 dark:text-white px-6 py-3 rounded-full font-bold shadow-[0_0_20px_rgba(225,29,72,0.2)]">
+                Rekayasa Instrumentasi & Otomasi
+            </div>
+
+            <!-- Branch 1: Hardware -->
+            <div class="w-full md:w-1/2 md:mr-auto md:pr-12 relative flex justify-end group">
+                <div class="hidden md:block absolute right-0 top-1/2 w-12 h-0.5 bg-slate-200 dark:bg-zinc-800 group-hover:bg-primary transition-colors"></div>
+                <div class="w-full soft-card p-6 rounded-2xl interactive-card">
+                    <h3 class="text-sm font-bold text-primary mb-4 uppercase tracking-widest"><i class="fa-solid fa-microchip mr-2"></i>Hardware, IoT & Design</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-zinc-800/50 border border-slate-100 dark:border-white/5 hover:border-primary transition-colors">
+                            <img src="assets/icons/cpp.png" alt="C++" class="w-8 h-8 object-contain">
+                            <div class="text-sm font-semibold dark:text-slate-300">C++<br><span class="text-xs text-slate-500 font-normal">Microcontroller</span></div>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-zinc-800/50 border border-slate-100 dark:border-white/5 hover:border-primary transition-colors">
+                            <img src="assets/icons/esp.png" alt="ESP/IoT" class="w-8 h-8 object-contain">
+                            <div class="text-sm font-semibold dark:text-slate-300">IoT / ESP32<br><span class="text-xs text-slate-500 font-normal">Embedded Sys</span></div>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-zinc-800/50 border border-slate-100 dark:border-white/5 hover:border-primary transition-colors">
+                            <img src="assets/icons/kicad.png" alt="KiCad" class="w-8 h-8 object-contain">
+                            <div class="text-sm font-semibold dark:text-slate-300">KiCad<br><span class="text-xs text-slate-500 font-normal">PCB Design</span></div>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-zinc-800/50 border border-slate-100 dark:border-white/5 hover:border-primary transition-colors">
+                            <img src="assets/icons/fusion.png" alt="Fusion" class="w-8 h-8 object-contain">
+                            <div class="text-sm font-semibold dark:text-slate-300">Autodesk Fusion<br><span class="text-xs text-slate-500 font-normal">3D Modeling</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Branch 2: Industrial Automation -->
+            <div class="w-full md:w-1/2 md:ml-auto md:pl-12 relative flex justify-start group">
+                <div class="hidden md:block absolute left-0 top-1/2 w-12 h-0.5 bg-slate-200 dark:bg-zinc-800 group-hover:bg-primary transition-colors"></div>
+                <div class="w-full soft-card p-6 rounded-2xl interactive-card">
+                    <h3 class="text-sm font-bold text-primary mb-4 uppercase tracking-widest"><i class="fa-solid fa-industry mr-2"></i>Industrial Automation</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="col-span-2 flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-zinc-800/50 border border-slate-100 dark:border-white/5 hover:border-primary transition-colors">
+                            <img src="assets/icons/omron.ico" alt="Omron" class="w-10 h-10 object-contain">
+                            <div class="text-sm font-semibold dark:text-slate-300">Omron<br><span class="text-xs text-slate-500 font-normal">CX-Programmer & CX-Designer</span></div>
+                        </div>
+                        <div class="col-span-2 flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-zinc-800/50 border border-slate-100 dark:border-white/5 hover:border-primary transition-colors">
+                            <img src="assets/icons/haiwell.png" alt="Haiwell" class="w-10 h-10 object-contain">
+                            <div class="text-sm font-semibold dark:text-slate-300">Haiwell<br><span class="text-xs text-slate-500 font-normal">Haiwell Happy PLC & Cloud SCADA</span></div>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-zinc-800/50 border border-slate-100 dark:border-white/5 hover:border-primary transition-colors">
+                            <img src="assets/icons/gxworks2.ico" alt="GX Works 2" class="w-8 h-8 object-contain">
+                            <div class="text-sm font-semibold dark:text-slate-300">Mitsubishi<br><span class="text-xs text-slate-500 font-normal">GX Works 2</span></div>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-zinc-800/50 border border-slate-100 dark:border-white/5 hover:border-primary transition-colors">
+                            <img src="assets/icons/weintek.png" alt="Weintek" class="w-8 h-8 object-contain">
+                            <div class="text-sm font-semibold dark:text-slate-300">Weintek HMI<br><span class="text-xs text-slate-500 font-normal">EasyBuilder Pro</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Branch 3: Web App -->
+            <div class="w-full md:w-1/2 md:mr-auto md:pr-12 relative flex justify-end group">
+                <div class="hidden md:block absolute right-0 top-1/2 w-12 h-0.5 bg-slate-200 dark:bg-zinc-800 group-hover:bg-primary transition-colors"></div>
+                <div class="w-full soft-card p-6 rounded-2xl interactive-card">
+                    <h3 class="text-sm font-bold text-primary mb-4 uppercase tracking-widest"><i class="fa-solid fa-code mr-2"></i>Software & Web App</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-zinc-800/50 border border-slate-100 dark:border-white/5 hover:border-primary transition-colors">
+                            <i class="devicon-nodejs-plain colored text-4xl"></i>
+                            <div class="text-sm font-semibold dark:text-slate-300">Node.js<br><span class="text-xs text-slate-500 font-normal">Backend</span></div>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-zinc-800/50 border border-slate-100 dark:border-white/5 hover:border-primary transition-colors">
+                            <i class="devicon-tailwindcss-original colored text-4xl"></i>
+                            <div class="text-sm font-semibold dark:text-slate-300">Tailwind<br><span class="text-xs text-slate-500 font-normal">UI/UX Layout</span></div>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-zinc-800/50 border border-slate-100 dark:border-white/5 hover:border-primary transition-colors">
+                            <i class="devicon-mysql-plain-wordmark colored text-4xl"></i>
+                            <div class="text-sm font-semibold dark:text-slate-300">MySQL<br><span class="text-xs text-slate-500 font-normal">Database</span></div>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-zinc-800/50 border border-slate-100 dark:border-white/5 hover:border-primary transition-colors">
+                            <i class="devicon-github-original dark:text-white text-4xl"></i>
+                            <div class="text-sm font-semibold dark:text-slate-300">GitHub<br><span class="text-xs text-slate-500 font-normal">Version Control</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Branch 4: Hardware -->
+            <div class="w-full md:w-1/2 md:ml-auto md:pl-12 relative flex justify-start group">
+                <div class="hidden md:block absolute left-0 top-1/2 w-12 h-0.5 bg-slate-200 dark:bg-zinc-800 group-hover:bg-primary transition-colors"></div>
+                <div class="w-full soft-card p-6 rounded-2xl interactive-card">
+                    <h3 class="text-sm font-bold text-primary mb-4 uppercase tracking-widest"><i class="fa-solid fa-gear mr-2"></i>Business</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-zinc-800/50 border border-slate-100 dark:border-white/5 hover:border-primary transition-colors">
+                            <i class="devicon-java-plain colored text-4xl"></i>
+                            <div class="text-sm font-semibold dark:text-slate-300">Jasa Perbaikan<br><span class="text-xs text-slate-500 font-normal">Alat Elektronik & Smartphone</span></div>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-zinc-800/50 border border-slate-100 dark:border-white/5 hover:border-primary transition-colors">
+                            <i class="devicon-java-plain colored text-4xl"></i>
+                            <div class="text-sm font-semibold dark:text-slate-300">Jual Beli<br><span class="text-xs text-slate-500 font-normal">UI/Laptop & HP Second</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION PENGALAMAN -->
+    <section id="experience" class="py-24 px-6 max-w-7xl mx-auto border-t border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-darkBg">
+        <div class="text-center space-y-4 mb-16 reveal">
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight lang" data-id="Pengalaman Kerja & Organisasi" data-en="Work Experience & Organizations">Pengalaman Kerja & Organisasi</h2>
+            <div class="h-1 w-12 bg-primary mx-auto rounded-full"></div>
+        </div>
+
+        <div class="max-w-3xl mx-auto">
+            <div class="relative border-l-2 border-slate-200 dark:border-zinc-700 pl-8 space-y-12">
+                <div class="relative reveal">
+                    <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-primary border-4 border-lightBg dark:border-darkBg shadow-[0_0_10px_rgba(225,29,72,0.5)]"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white lang" data-id="Asisten Laboratorium" data-en="Laboratory Assistant">Asisten Laboratorium</h3>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-full bg-primary/10 text-primary mt-2 sm:mt-0 w-max lang" data-id="ITERA (Aktif)" data-en="ITERA (Active)">ITERA (Aktif)</span>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed lang" data-id="Bertanggung jawab dalam manajemen serta pemeliharaan aset alat ukur dan instrumen laboratorium, menjaga keandalan fasilitas, serta memfasilitasi asistensi teknis." data-en="Responsible for the management and maintenance of measuring instruments and laboratory assets, ensuring facility reliability, and facilitating technical assistance.">Bertanggung jawab dalam manajemen serta pemeliharaan aset alat ukur dan instrumen laboratorium, menjaga keandalan fasilitas, serta memfasilitasi asistensi teknis.</p>
+                </div>
+
+                <div class="relative reveal delay-100">
+                    <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-primary border-4 border-lightBg dark:border-darkBg shadow-[0_0_10px_rgba(225,29,72,0.5)]"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white lang" data-id="Humas Program Studi" data-en="Public Relations Officer">Humas Program Studi</h3>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-full bg-primary/10 text-primary mt-2 sm:mt-0 w-max lang" data-id="ITERA (Aktif)" data-en="ITERA (Active)">ITERA (Aktif)</span>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed lang" data-id="Bertindak sebagai representatif komunikasi publik. Mengkoordinasikan wawancara, agenda sosialisasi, dan memproduksi konten media edukatif." data-en="Acts as the public communication representative. Coordinates interviews, outreach agendas, and produces educational media content.">Bertindak sebagai representatif komunikasi publik. Mengkoordinasikan wawancara, agenda sosialisasi, dan memproduksi konten media edukatif.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION PENDIDIKAN -->
+    <section id="education" class="py-24 px-6 max-w-7xl mx-auto border-t border-slate-200 dark:border-zinc-800">
+        <div class="text-center space-y-4 mb-16 reveal">
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight lang" data-id="Riwayat Pendidikan" data-en="Education Background">Riwayat Pendidikan</h2>
+            <div class="h-1 w-12 bg-primary mx-auto rounded-full"></div>
+        </div>
+
+        <div class="max-w-3xl mx-auto">
+            <div class="relative border-l-2 border-slate-200 dark:border-zinc-700 pl-8 space-y-12">
+                <div class="relative reveal">
+                    <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-slate-400 dark:bg-zinc-500 border-4 border-lightBg dark:border-darkBg"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Institut Teknologi Sumatera (ITERA)</h3>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-full bg-slate-200 dark:bg-zinc-800 text-slate-600 dark:text-slate-300 mt-2 sm:mt-0 w-max lang" data-id="S1 Reguler" data-en="Bachelor Degree">S1 Reguler</span>
+                    </div>
+                    <p class="text-slate-800 dark:text-white font-medium text-sm mb-1 lang" data-id="Program Studi: Rekayasa Instrumentasi dan Automasi" data-en="Major: Instrumentation and Automation Engineering">Program Studi: Rekayasa Instrumentasi dan Automasi</p>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed lang" data-id="Fokus pada penerapan sistem kendali cerdas, instrumentasi industri, kalibrasi sistem kontrol otomatis, hingga integrasi teknologi Internet of Things (IoT) pada manufaktur." data-en="Focusing on smart control systems, industrial instrumentation, calibration of automated control systems, and IoT integration in manufacturing.">Fokus pada penerapan sistem kendali cerdas, instrumentasi industri, kalibrasi sistem kontrol otomatis, hingga integrasi teknologi Internet of Things (IoT) pada manufaktur.</p>
+                </div>
+
+                <div class="relative reveal delay-100">
+                    <div class="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-slate-400 dark:bg-zinc-500 border-4 border-lightBg dark:border-darkBg"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">SMKN 2 Bogor</h3>
+                        <span class="text-xs font-semibold px-3 py-1 rounded-full bg-slate-200 dark:bg-zinc-800 text-slate-600 dark:text-slate-300 mt-2 sm:mt-0 w-max lang" data-id="Alumni Vokasi" data-en="Vocational Alumni">Alumni Vokasi</span>
+                    </div>
+                    <p class="text-slate-800 dark:text-white font-medium text-sm mb-1 lang" data-id="Jurusan: Teknik Instalasi Tenaga Listrik" data-en="Major: Electrical Power Installation Engineering">Jurusan: Teknik Instalasi Tenaga Listrik</p>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed lang" data-id="Membangun fondasi kompetensi lapangan mengenai distribusi kelistrikan, perancangan sirkuit panel motor listrik, serta implementasi standar keamanan K3." data-en="Building a strong foundation in electrical distribution, electric motor panel circuit design, and implementation of safety standards.">Membangun fondasi kompetensi lapangan mengenai distribusi kelistrikan, perancangan sirkuit panel motor listrik, serta implementasi standar keamanan K3.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROYEK & INSTALASI INDUSTRI -->
+    <section id="projects" class="py-24 px-6 max-w-7xl mx-auto border-t border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-darkBg">
+        <div class="text-center space-y-4 mb-16 reveal">
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight lang" data-id="Portofolio Kerja Lapangan" data-en="Field Work Portfolio">Portofolio Kerja Lapangan</h2>
+            <div class="h-1 w-12 bg-primary mx-auto rounded-full"></div>
+            <p class="text-slate-500 max-w-2xl mx-auto text-sm lang" data-id="Dokumentasi langsung dari hasil perakitan panel dan instalasi mesin industri." data-en="Direct documentation of panel assembly and industrial machine installations.">Dokumentasi langsung dari hasil perakitan panel dan instalasi mesin industri.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="soft-card rounded-2xl overflow-hidden reveal group interactive-card flex flex-col">
+                <div class="h-56 relative overflow-hidden bg-slate-200 dark:bg-zinc-800 border-b border-slate-100 dark:border-zinc-700">
+                    <img src="assets/img/doc1-kaffahtex.jpeg" alt="PT Kaffahtex" class="smart-crop transition-transform duration-700 group-hover:scale-110" onerror="this.src='https://via.placeholder.com/600x400/18181b/e11d48?text=Dokumentasi+Kerja'">
+                    <div class="absolute top-3 right-3 bg-white/90 dark:bg-black/80 backdrop-blur text-xs font-bold px-3 py-1 rounded-md text-primary lang" data-id="PKL" data-en="Intern">Intern</div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">PLC & HMI Programming</h3>
+                    <p class="text-xs text-slate-500 font-semibold mb-4"><i class="fa-solid fa-location-dot mr-1"></i> PT Kaffahtex Abadi</p>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 lang" data-id="Merakit panel kendali untuk mesin stenter dan steamer. Termasuk penarikan kabel, instalasi motor penggerak, pemasangan sensor triway, serta modifikasi tray kabel fabrikasi." data-en="Assembled control panels for stenter and steamer machines. Includes cable routing, drive motor installation, triway sensor fitting, and tray modification.">Merakit panel kendali untuk mesin stenter dan steamer. Termasuk penarikan kabel, instalasi motor penggerak, pemasangan sensor triway, serta modifikasi tray kabel fabrikasi.</p>
+                </div>
+            </div>
+
+            <div class="soft-card rounded-2xl overflow-hidden reveal delay-100 group interactive-card flex flex-col">
+                <div class="h-56 relative overflow-hidden bg-slate-200 dark:bg-zinc-800 border-b border-slate-100 dark:border-zinc-700">
+                    <img src="assets/img/doc-setiabusana.jpeg" alt="PT Setia Busana Tex" class="smart-crop transition-transform duration-700 group-hover:scale-110" onerror="this.src='https://via.placeholder.com/600x400/18181b/e11d48?text=Dokumentasi+Kerja'">
+                    <div class="absolute top-3 right-3 bg-white/90 dark:bg-black/80 backdrop-blur text-xs font-bold px-3 py-1 rounded-md text-primary lang" data-id="PKL" data-en="Intern">Intern</div> 
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Modifikasi Mesin Jet Dyeing</h3>
+                    <p class="text-xs text-slate-500 font-semibold mb-4"><i class="fa-solid fa-location-dot mr-1"></i> PT Setia Busana Tex</p>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 lang" data-id="Melakukan proses modifikasi jalur kelistrikan mesin jet dyeing, meliputi penarikan rute kabel baru dan instalasi presisi untuk sensor proximity." data-en="Modified electrical routing for jet dyeing machines, including new cable pulling and precision installation for proximity sensors.">Melakukan proses modifikasi jalur kelistrikan mesin jet dyeing, meliputi penarikan rute kabel baru dan instalasi presisi untuk sensor proximity.</p>
+                </div>
+            </div>
+
+            <div class="soft-card rounded-2xl overflow-hidden reveal delay-200 group interactive-card flex flex-col">
+                <div class="h-56 relative overflow-hidden bg-slate-200 dark:bg-zinc-800 border-b border-slate-100 dark:border-zinc-700">
+                    <img src="assets/img/doc-dewisakti.jpeg" alt="PT Dewisakti" class="smart-crop transition-transform duration-700 group-hover:scale-110" onerror="this.src='https://via.placeholder.com/600x400/18181b/e11d48?text=Dokumentasi+Kerja'">
+                    <div class="absolute top-3 right-3 bg-white/90 dark:bg-black/80 backdrop-blur text-xs font-bold px-3 py-1 rounded-md text-primary lang" data-id="PKL" data-en="Intern">Intern</div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Modifikasi Mesin Washing</h3>
+                    <p class="text-xs text-slate-500 font-semibold mb-4"><i class="fa-solid fa-location-dot mr-1"></i> PT Dewi Sakti Anugrah</p>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 lang" data-id="Mengeksekusi perakitan panel kontrol untuk mesin washing. Mengelola penarikan alur kabel, instalasi motor, dan pengaplikasian sensor sudut." data-en="Executed control panel assembly for washing machines. Managed cable routing, motor installations, and angle sensor calibration.">Mengeksekusi perakitan panel kontrol untuk mesin washing. Mengelola penarikan alur kabel, instalasi motor, dan pengaplikasian sensor sudut.</p>
+                </div>
+            </div>
+
+            <div class="soft-card rounded-2xl overflow-hidden reveal group interactive-card flex flex-col">
+                <div class="h-56 relative overflow-hidden bg-slate-200 dark:bg-zinc-800 border-b border-slate-100 dark:border-zinc-700">
+                    <img src="assets/img/doc1-mahugi.jpeg" alt="PT Mahugi" class="smart-crop transition-transform duration-700 group-hover:scale-110" onerror="this.src='https://via.placeholder.com/600x400/18181b/e11d48?text=Dokumentasi+Kerja'">
+                    <div class="absolute top-3 right-3 bg-white/90 dark:bg-black/80 backdrop-blur text-xs font-bold px-3 py-1 rounded-md text-primary lang" data-id="PKL" data-en="Intern">Intern</div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Troubleshooting Panel Printing</h3>
+                    <p class="text-xs text-slate-500 font-semibold mb-4"><i class="fa-solid fa-location-dot mr-1"></i> PT Mahugi Jaya Sejahtera</p>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 lang" data-id="Dipercaya melakukan evaluasi teknis dengan membongkar dan merakit kembali panel kontrol utama pada unit mesin printing tekstil berskala besar." data-en="Entrusted to perform technical evaluation by dismantling and reassembling the main control panel on large-scale textile printing machines.">Dipercaya melakukan evaluasi teknis dengan membongkar dan merakit kembali panel kontrol utama pada unit mesin printing tekstil berskala besar.</p>
+                </div>
+            </div>
+
+            <div class="soft-card rounded-2xl overflow-hidden reveal delay-100 group interactive-card flex flex-col">
+                <div class="h-56 relative overflow-hidden bg-slate-200 dark:bg-zinc-800 border-b border-slate-100 dark:border-zinc-700">
+                    <img src="assets/img/doc-siap.jpeg" alt="PT SIAP" class="smart-crop transition-transform duration-700 group-hover:scale-110" onerror="this.src='https://via.placeholder.com/600x400/18181b/e11d48?text=Dokumentasi+Kerja'">
+                    <div class="absolute top-3 right-3 bg-white/90 dark:bg-black/80 backdrop-blur text-xs font-bold px-3 py-1 rounded-md text-blue-500 lang" data-id="Joint Work" data-en="Joint Work">Joint Work</div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Stenter Machine Installation</h3>
+                    <p class="text-xs text-slate-500 font-semibold mb-4"><i class="fa-solid fa-location-dot mr-1"></i> PT Sukses Investa Anugrah Propertindo</p>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 lang" data-id="Terlibat langsung instalasi motor penggerak mesin stenter. Bekerja sama secara ekstensif bersama tim engineer ekspatriat asal Tiongkok." data-en="Involved directly in installing drive motors for stenter machines. Worked extensively with expatriate engineer teams from China.">Terlibat langsung instalasi motor penggerak mesin stenter. Bekerja sama secara ekstensif bersama tim engineer ekspatriat asal Tiongkok.</p>
+                </div>
+            </div>
+            
+            <div class="soft-card rounded-2xl overflow-hidden reveal delay-100 group interactive-card flex flex-col">
+                <div class="h-56 relative overflow-hidden bg-slate-200 dark:bg-zinc-800 border-b border-slate-100 dark:border-zinc-700">
+                    <img src="assets/img/doc-hfmixing.jpeg" alt="HF Mixing" class="smart-crop transition-transform duration-700 group-hover:scale-110" onerror="this.src='https://via.placeholder.com/600x400/18181b/e11d48?text=Dokumentasi+Kerja'">
+                    <div class="absolute top-3 right-3 bg-white/90 dark:bg-black/80 backdrop-blur text-xs font-bold px-3 py-1 rounded-md text-orange-500 lang" data-id="Freelance" data-en="Freelance">HF Mixing Group</div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Maintenance Mesin Mixing Ban</h3>
+                    <p class="text-xs text-slate-500 font-semibold mb-4"><i class="fa-solid fa-location-dot mr-1"></i> PT Elang Perdana Tyre Industry</p>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 lang" data-id="Terlibat langsung instalasi motor penggerak mesin stenter. Bekerja sama secara ekstensif bersama tim engineer ekspatriat asal Tiongkok." data-en="Provided maintenance support for rubber mixing machines in a tire production facility.
+                    Worked in high-risk mechanical areas while fully complying with K3 safety protocols, including full-body PPE.">Memberikan dukungan perawatan untuk mesin pencampur karet di fasilitas produksi ban. Bekerja di area mekanik berisiko tinggi sambil sepenuhnya mematuhi protokol keselamatan K3, termasuk APD seluruh tubuh.</p>
+                </div>
+            </div>
+            
+            <div class="soft-card rounded-2xl overflow-hidden reveal delay-100 group interactive-card flex flex-col">
+                <div class="h-56 relative overflow-hidden bg-slate-200 dark:bg-zinc-800 border-b border-slate-100 dark:border-zinc-700">
+                    <img src="assets/img/doc-insan.jpeg" alt="PT SIAP" class="smart-crop transition-transform duration-700 group-hover:scale-110" onerror="this.src='https://via.placeholder.com/600x400/18181b/e11d48?text=Dokumentasi+Kerja'">
+                    <div class="absolute top-3 right-3 bg-white/90 dark:bg-black/80 backdrop-blur text-xs font-bold px-3 py-1 rounded-md text-red-500 lang" data-id="PKL" data-en="Intern">Intern</div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Panel Mesin Stenter & Steamer</h3>
+                    <p class="text-xs text-slate-500 font-semibold mb-4"><i class="fa-solid fa-location-dot mr-1"></i> CV Insan Teknik Mandiri</p>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 lang" data-id="Merakit panel kendali untuk mesin stenter dan steamer. Termasuk penarikan kabel, instalasi motor penggerak, pemasangan sensor triway, serta modifikasi tray kabel fabrikasi." data-en="Assembled control panels for stenter and steamer machines. Includes cable routing, drive motor installation, triway sensor fitting, and tray modification.">Merakit panel kendali untuk mesin stenter dan steamer. Termasuk penarikan kabel, instalasi motor penggerak, pemasangan sensor triway, serta modifikasi tray kabel fabrikasi.</p>
+                </div>
+            </div>
+            
+            <div class="soft-card rounded-2xl overflow-hidden reveal delay-100 group interactive-card flex flex-col">
+                <div class="h-56 relative overflow-hidden bg-slate-200 dark:bg-zinc-800 border-b border-slate-100 dark:border-zinc-700">
+                    <img src="assets/img/doc-bisnis.jpeg" alt="bisnis" class="smart-crop transition-transform duration-700 group-hover:scale-110" onerror="this.src='https://via.placeholder.com/600x400/18181b/e11d48?text=Dokumentasi+Kerja'">
+                    <div class="absolute top-3 right-3 bg-white/90 dark:bg-black/80 backdrop-blur text-xs font-bold px-3 py-1 rounded-md text-white-500 lang" data-id="Jasa Servis Elektronik dan HP" data-en="Business">Jasa Servis Elektronik dan HP</div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Stenter Machine Installation</h3>
+                    <p class="text-xs text-slate-500 font-semibold mb-4"><i class="fa-solid fa-location-dot mr-1"></i> Asrama TB3 ITERA</p>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 lang" data-id="Membuka jasa perbaikan alat-alat elektronik rumah tangga yang rusak (Rice Cooker, Setrika, Kipas Angin) hingga Smartphone (HP) dengan harga yang terjangkau ramah dikantong mahasiswa hehe" data-en="Opening a repair service for broken household electronic appliances (Rice Cookers, Irons, Fans) to Smartphones (HP) at affordable prices that are friendly to student pockets hehe">Membuka jasa perbaikan alat-alat elektronik rumah tangga yang rusak (Rice Cooker, Setrika, Kipas Angin) hingga Smartphone (HP) dengan harga yang terjangkau ramah dikantong mahasiswa hehe</p>
+                </div>
+            </div>
+
+            <div class="soft-card rounded-2xl overflow-hidden reveal delay-200 group interactive-card flex flex-col">
+                <div class="h-56 relative overflow-hidden bg-slate-200 dark:bg-zinc-800 border-b border-slate-100 dark:border-zinc-700">
+                    <img src="assets/img/doc-pkkm.jpeg" alt="pkkm" class="smart-crop transition-transform duration-700 group-hover:scale-110" onerror="this.src='https://via.placeholder.com/600x400/18181b/e11d48?text=Dokumentasi+Kerja'">
+                    <div class="absolute top-3 right-3 bg-white/90 dark:bg-black/80 backdrop-blur text-xs font-bold px-3 py-1 rounded-md text-green-500 lang" data-id="Project Software" data-en="Project Software">Project Software  </div>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Platform LahanBersama</h3>
+                    <p class="text-xs text-slate-500 font-semibold mb-4"><i class="fa-solid fa-code mr-1"></i> Hibah PKKM ITERA</p>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-4 lang" data-id="Pengembangan antarmuka digital berbasis web untuk platform investasi crowdfarming modern. Dibangun kolaboratif bersama tim." data-en="Developed a web-based digital interface for a modern crowdfarming investment platform. Collaboratively built with a team.">Pengembangan antarmuka digital berbasis web untuk platform investasi crowdfarming modern. Dibangun kolaboratif bersama tim.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEKSI KONTAK -->
+    <section id="contact" class="py-24 px-6 max-w-7xl mx-auto border-t border-slate-200 dark:border-zinc-800">
+        <div class="text-center space-y-4 mb-16 reveal">
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight lang" data-id="Mari Terhubung" data-en="Let's Connect">Mari Terhubung</h2>
+            <div class="h-1 w-12 bg-primary mx-auto rounded-full"></div>
+            <p class="text-slate-500 max-w-2xl mx-auto text-sm lang" data-id="Tertarik untuk berkolaborasi atau memiliki proyek menarik? Hubungi saya melalui kanal di bawah ini." data-en="Interested in collaborating or have an exciting project? Reach me through the channels below.">Tertarik untuk berkolaborasi atau memiliki proyek menarik? Hubungi saya melalui kanal di bawah ini.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            <a href="https://wa.me/628976716619" target="_blank" class="soft-card p-6 rounded-2xl flex flex-col items-center justify-center text-center group hover:border-emerald-500 dark:hover:border-emerald-500 transition-all duration-300 reveal">
+                <div class="w-14 h-14 rounded-full bg-emerald-100 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-500 text-2xl mb-4 group-hover:scale-110 transition-transform"><i class="fa-brands fa-whatsapp"></i></div>
+                <h3 class="font-bold text-slate-900 dark:text-white mb-1">WhatsApp</h3>
+                <p class="text-xs text-slate-500 lang" data-id="Pesan Cepat" data-en="Fast Message">Pesan Cepat</p>
+            </a>
+
+            <a href="https://www.linkedin.com/in/rahmat-karunia-suharso-a754022b2/" target="_blank" class="soft-card p-6 rounded-2xl flex flex-col items-center justify-center text-center group hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-300 reveal delay-100">
+                <div class="w-14 h-14 rounded-full bg-blue-100 dark:bg-blue-500/10 flex items-center justify-center text-blue-500 text-2xl mb-4 group-hover:scale-110 transition-transform"><i class="fa-brands fa-linkedin-in"></i></div>
+                <h3 class="font-bold text-slate-900 dark:text-white mb-1">LinkedIn</h3>
+                <p class="text-xs text-slate-500 lang" data-id="Relasi Profesional" data-en="Professional Network">Relasi Profesional</p>
+            </a>
+
+            <a href="https://github.com/mattthexc" target="_blank" class="soft-card p-6 rounded-2xl flex flex-col items-center justify-center text-center group hover:border-slate-800 dark:hover:border-white transition-all duration-300 reveal delay-200">
+                <div class="w-14 h-14 rounded-full bg-slate-200 dark:bg-zinc-800 flex items-center justify-center text-slate-800 dark:text-white text-2xl mb-4 group-hover:scale-110 transition-transform"><i class="fa-brands fa-github"></i></div>
+                <h3 class="font-bold text-slate-900 dark:text-white mb-1">GitHub</h3>
+                <p class="text-xs text-slate-500 lang" data-id="Repositori Kode" data-en="Code Repositories">Repositori Kode</p>
+            </a>
+
+            <a href="https://instagram.com/mattthexc" target="_blank" class="soft-card p-6 rounded-2xl flex flex-col items-center justify-center text-center group hover:border-pink-500 dark:hover:border-pink-500 transition-all duration-300 reveal delay-200">
+                <div class="w-14 h-14 rounded-full bg-pink-100 dark:bg-pink-500/10 flex items-center justify-center text-pink-500 text-2xl mb-4 group-hover:scale-110 transition-transform"><i class="fa-brands fa-instagram"></i></div>
+                <h3 class="font-bold text-slate-900 dark:text-white mb-1">Instagram</h3>
+                <p class="text-xs text-slate-500 lang" data-id="Aktivitas Personal" data-en="Personal Activities">Aktivitas Personal</p>
+            </a>
+        </div>
+
+        <div class="mt-10 flex justify-center reveal delay-200">
+            <button onclick="copyEmail()" id="copy-btn-bottom" class="magnetic-btn px-8 py-4 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold hover:bg-primary dark:hover:bg-primary hover:text-white transition-colors flex items-center gap-3 shadow-lg">
+                <i class="fa-solid fa-envelope"></i> <span id="copy-text-bottom">rahmatkarunia17@gmail.com</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-200 dark:border-zinc-800 bg-lightBg dark:bg-darkBg py-8 text-center px-6">
+        <p class="text-sm font-medium text-slate-500 dark:text-slate-500">&copy; 2026 Rahmat Karunia Suharso.</p>
+    </footer>
+
+    <script src="js/main.js" defer></script>
+</body>
+</html>
