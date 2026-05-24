@@ -11,6 +11,10 @@ body, a, button, .interactive-card, .magnetic-btn {
     cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='black' stroke='white' stroke-width='1.5' d='M5.5 3.5L18.5 12L11.5 13.5L14.5 20.5L11 22L7.5 14L2.5 17.5Z'/%3E%3C/svg%3E"), auto;
 }
 
+.bg-third {
+   background: #A0D585;
+}
+
 /* Memotong foto agar selalu rapi di semua resolusi */
 .smart-crop {
     display: block;
