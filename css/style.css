@@ -34,7 +34,7 @@ body, a, button, .interactive-card, .magnetic-btn {
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
 .dark ::-webkit-scrollbar-thumb { background: #3f3f46; } 
-::-webkit-scrollbar-thumb:hover { background: #e11d48; }
+::-webkit-scrollbar-thumb:hover { background: #91D06C; }
 
 body { overflow-x: hidden; width: 100%; }
 
